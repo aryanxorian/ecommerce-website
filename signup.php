@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    include_once("validate.php");
+?>
 <!DOCTYPE HTML>  
 <html>
     <head>
