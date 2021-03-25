@@ -1,15 +1,17 @@
 <?php
+    require_once 'configd.php';
 	session_start();
     $nameErr = $emailErr = $genderErr = $pwdErr = "";
-    $name = $email = $gender = $passwordd = "";
+    $name = $email = $gender = $password = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
     	
         $_SESSION["name"] = $name = test_input($_POST["name"]);
         $_SESSION["email"] = $email = test_input($_POST["email"]);
-        $_SESSION["gender"] = $gender = test_input($_POST["gender"]);
         $_SESSION["password"] = $password = test_input($_POST["password"]);
+        $_SESSION["dob"] = $dob = test_input($_POST["dob"]);
+        $_SESSION["gender"] = $gender = test_input($_POST["gender"]);
         
     
         if (empty($name)) {
@@ -45,10 +47,27 @@
         }
 
 	    if (!$nameERR && !$genderErr && !$emailErr && !$pwdErr) {
-	            header('Location: signin.php');
-	            exit();
+	        // header('Location: signin.php');
+	        // exit(); 
+            $conn = new mysqli($host, $username, $dbpassword, $dbname);
+            
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            $check_email_query="SELECT * from users WHERE email='$email'";  
+            $run_query=mysqli_query($conn,$check_email_query);  
+            if(mysqli_num_rows($run_query)>0){
+                $emailErr="Email already exists. You cannot register with duplicate email.";
+            }else{
+                $stmt = $conn->prepare("INSERT INTO users (name, email, password, dob, gender) VALUES (?, ?, ?, ?, ?)");
+                $stmt->bind_param("sssss", $name, $email, $password, $dob, $gender);
+                $stmt->execute();
+            }
+
 	    }
 	}
+    session_destroy();
 
     function test_input($data) {
     $data = trim($data);
