@@ -1,7 +1,3 @@
-<?php
-    session_start();
-    include_once("validate.php");
-?>
 <!DOCTYPE HTML>  
 <html>
     <head>
@@ -13,9 +9,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <style type="text/css"> 
-    	body{
-    	    font-family: cursive;
-    		}
+        body{
+            font-family: cursive;
+            }
         .login-form {
             width: 60%;
             margin: 0 auto;
@@ -88,6 +84,7 @@
                         </div>
                     </div>
                 </form>
+                <p class="text-center ">Already have an account? <a href="signin.php"><u>Sign in here!</a></u></p>
             </div>
         </div>
     </body>
