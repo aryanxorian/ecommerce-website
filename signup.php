@@ -6,40 +6,13 @@
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Php Form</title>
+    <link rel="stylesheet" type="text/css" href="assests/css/signup.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <style type="text/css"> 
-        body{
-            font-family: cursive;
-            }
-        .login-form {
-            width: 60%;
-            margin: 0 auto;
-            padding: 100px 0 30px;    
-        }
-        .para{
-            padding: 10px;
-        }
-        .error {
-            color: #FF0000;
-        }
-        .box{
-            background-color: #ececec;
-            padding:4%;
-            color:#7a7a7a;
-            font-weight: 10px;
-            font-family: cursive;
-        }
-        .h{
-            text-align: center;
-        }
-        .postion{
-            text-align: center;
-        }
-    </style>
+    
     </head>
     <body>
         <div class="container-fluid">    
