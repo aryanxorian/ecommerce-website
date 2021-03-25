@@ -44,28 +44,28 @@ session_start();
                                 <?php
                                     $total=0;
                                     if(isset($_SESSION['cart']))
-                                        {
-                                            foreach($_SESSION['cart'] as $key =>$value)
-                                                {   
-                                                    $total+=$value['item_price'];
-                                                    echo"
-                                                        <tr>
-                                                            <td> </td>
-                                                            <td>$value[item_name]</td>
-                                                            <td> $value[item_price]</td>
-                                                            <td><input type='number' value='$value[quantity]' min='1' max='10' class='text-center' > </td>
+                                    {
+                                        foreach($_SESSION['cart'] as $key =>$value)
+                                        {   
+                                            $total+=$value['item_price'];
+                                                echo"
+                                                    <tr>
+                                                        <td> </td>
+                                                        <td>$value[item_name]</td>
+                                                        <td> $value[item_price]</td>
+                                                        <td><input type='number' value='$value[quantity]' min='1' max='10' class='text-center' > </td>
 
-                                                            <td> 
-                                                                <form action='manage_cart.php' method='POST'>
-                                                                    <button  name='remove_item' class='btn btn-sm btn-outline-danger'> Remove</button>
-                                                                    <input type='hidden' name='item_name' value='$value[item_name]' >
-                                                                </form>
-                                                            </td>
-                                                        </tr>
+                                                        <td> 
+                                                            <form action='manage_cart.php' method='POST'>
+                                                                <button  name='remove_item' class='btn btn-sm btn-outline-danger'> Remove</button>
+                                                                <input type='hidden' name='item_name' value='$value[item_name]' >
+                                                            </form>
+                                                        </td>
+                                                    </tr>
                                                     ";
-                                                }
-
                                         }
+
+                                    }
                                 ?>
                                
                                 
