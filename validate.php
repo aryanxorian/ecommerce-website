@@ -49,25 +49,25 @@
 	    if (!$nameERR && !$genderErr && !$emailErr && !$pwdErr) {
 	        // header('Location: signin.php');
 	        // exit(); 
-                try {
-                    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $dbpassword);
-                    //$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    echo "Connected to $dbname at $host successfully.";
-                } catch (PDOException $pe) {
-                    die("Could not connect to the database $dbname :" . $pe->getMessage());
-                }
+            $conn = new mysqli($host, $username, $dbpassword, $dbname);
+            
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
 
-                $data = array($name,$email,$password,$dob,$gender);
-                
-                $sql = "INSERT INTO users(name,email,password,dob,gender) VALUES(?, ?, ?, ?, ?);";
-
-                $q = $conn->prepare($sql);
-
-                $q->execute($data);
+            $check_email_query="SELECT * from users WHERE email='$email'";  
+            $run_query=mysqli_query($conn,$check_email_query);  
+            if(mysqli_num_rows($run_query)>0){
+                $emailErr="Email already exists. You cannot register with duplicate email.";
+            }else{
+                $stmt = $conn->prepare("INSERT INTO users (name, email, password, dob, gender) VALUES (?, ?, ?, ?, ?)");
+                $stmt->bind_param("sssss", $name, $email, $password, $dob, $gender);
+                $stmt->execute();
+            }
 
 	    }
 	}
-    // session_destroy();
+    session_destroy();
 
     function test_input($data) {
     $data = trim($data);
