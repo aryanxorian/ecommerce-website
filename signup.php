@@ -77,9 +77,9 @@
                         <div class="custom-control custom-radio">
                             <label  class="col-sm-12 col-form-label">Gender</label>
                             <div class="col-sm-12">
-                                <input type="radio" class="custom-control-input" name="gender" value="female">Female
-                                <input type="radio"  class="custom-control-input" name="gender" value="male">Male
-                                <input type="radio" class="custom-control-input" name="gender" value="other">Other
+                                <input type="radio" class="custom-control-input" name="gender" value="f">Female
+                                <input type="radio"  class="custom-control-input" name="gender" value="m">Male
+                                <input type="radio" class="custom-control-input" name="gender" value="t">Other
                                 <span class = "error">* <?php echo $genderErr;?></span>
                             </div>
                         </div>

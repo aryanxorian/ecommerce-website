@@ -1,15 +1,17 @@
 <?php
+    require_once 'configd.php';
 	session_start();
     $nameErr = $emailErr = $genderErr = $pwdErr = "";
-    $name = $email = $gender = $passwordd = "";
+    $name = $email = $gender = $password = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
     	
         $_SESSION["name"] = $name = test_input($_POST["name"]);
         $_SESSION["email"] = $email = test_input($_POST["email"]);
-        $_SESSION["gender"] = $gender = test_input($_POST["gender"]);
         $_SESSION["password"] = $password = test_input($_POST["password"]);
+        $_SESSION["dob"] = $dob = test_input($_POST["dob"]);
+        $_SESSION["gender"] = $gender = test_input($_POST["gender"]);
         
     
         if (empty($name)) {
@@ -45,10 +47,27 @@
         }
 
 	    if (!$nameERR && !$genderErr && !$emailErr && !$pwdErr) {
-	            header('Location: signin.php');
-	            exit();
+	        // header('Location: signin.php');
+	        // exit(); 
+                try {
+                    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $dbpassword);
+                    //$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    echo "Connected to $dbname at $host successfully.";
+                } catch (PDOException $pe) {
+                    die("Could not connect to the database $dbname :" . $pe->getMessage());
+                }
+
+                $data = array($name,$email,$password,$dob,$gender);
+                
+                $sql = "INSERT INTO users(name,email,password,dob,gender) VALUES(?, ?, ?, ?, ?);";
+
+                $q = $conn->prepare($sql);
+
+                $q->execute($data);
+
 	    }
 	}
+    // session_destroy();
 
     function test_input($data) {
     $data = trim($data);
