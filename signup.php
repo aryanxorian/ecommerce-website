@@ -31,7 +31,7 @@
             padding:4%;
             color:#7a7a7a;
             font-weight: 10px;
-            font-family: cursive;
+            
         }
         .h{
             text-align: center;
