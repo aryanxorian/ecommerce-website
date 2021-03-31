@@ -14,53 +14,64 @@
         $_SESSION["gender"] = $gender = test_input($_POST["gender"]);
         
     
-        if (empty($name)) {
+        if (empty($name))
+        {
             $nameErr = "Name is required";
         }
 
-        if (empty($email)) {
+        if (empty($email))
+        {
          $emailErr = "Email is required";
         }
-        else {
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        else
+        {
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+            {
                 $emailErr = "Invalid email format"; 
             }
         }
             
-        if (strlen($password) <= 8) {
+        if (strlen($password) <= 8)
+        {
             $pwdErr = "Your Password Must Contain At Least 8 Characters!";
         }
-        elseif(!preg_match("#[0-9]+#",$password)) {
+        elseif(!preg_match("#[0-9]+#",$password))
+        {
             $pwdErr = "Your Password Must Contain At Least 1 Number!";
         }
-        elseif(!preg_match("#[A-Z]+#",$password)) {
+        elseif(!preg_match("#[A-Z]+#",$password))
+        {
             $pwdErr = "Your Password Must Contain At Least 1 Capital Letter!";
         }
-        elseif(!preg_match("#[a-z]+#",$password)) {
+        elseif(!preg_match("#[a-z]+#",$password))
+        {
             $pwdErr = "Your Password Must Contain At Least 1 Lowercase Letter!";
-        } else {
+        } 
+        else 
+        {
             $pwdErr = "";
         }
 
-        if (empty($gender)) {
+        if (empty($gender))
+        {
             $genderErr = "Gender is required";
         }
 
 	    if (!$nameERR && !$genderErr && !$emailErr && !$pwdErr) {
 	        // header('Location: signin.php');
 	        // exit(); 
-            $conn = new mysqli($host, $username, $dbpassword, $dbname);
             
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
 
             $check_email_query="SELECT * from users WHERE email='$email'";  
             $run_query=mysqli_query($conn,$check_email_query);  
-            if(mysqli_num_rows($run_query)>0){
+            if(mysqli_num_rows($run_query)>0)
+            {
                 $emailErr="Email already exists. You cannot register with duplicate email.";
-            }else{
+            }
+            else
+            {
                 $stmt = $conn->prepare("INSERT INTO users (name, email, password, dob, gender) VALUES (?, ?, ?, ?, ?)");
+                $password=password_hash($password,PASSWORD_DEFAULT);
                 $stmt->bind_param("sssss", $name, $email, $password, $dob, $gender);
                 $stmt->execute();
             }

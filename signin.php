@@ -1,3 +1,12 @@
+<?php
+if(isset($POST['login']))
+{
+    if(isset($POST['username']) && isset($POST['password']))
+    {
+        
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,24 +22,24 @@
         <div class="container property">
             <div class="row">
                 <div class="col-4 align-self-start"></div>
-                <div class="col-4 align-self-center">
-                <form action="#" method="post">
-                    <div class="avatar"><i class="fa fa-user"></i></div>
-                    <h4>Login to Your Account</h4>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Username" required="required">
+                    <div class="col-4 align-self-center">
+                        <form action="#" method="post">
+                            <div class="avatar"><i class="fa fa-user"></i></div>
+                            <h4>Login to Your Account</h4>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Username" required="required">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label><input type="checkbox"class="mr-1">Remember me</label>
+                                <a href="#" class="forgot-link">Forgot Password?</a>
+                            </div> 
+                            <input type="submit" class="btn btn-success btn-block btn-lg"  name="login" value="Login">              
+                        </form>			
+                        <div class="text-center small">Don't have an account? <a href="signup.php">Sign up here!</a></div>
                     </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password" required="required">
-                    </div>
-                    <div class="form-group">
-                        <label><input type="checkbox"class="mr-1">Remember me</label>
-                        <a href="#" class="forgot-link">Forgot Password?</a>
-                    </div> 
-                    <input type="submit" class="btn btn-success btn-block btn-lg" value="Login">              
-                </form>			
-                <div class="text-center small">Don't have an account? <a href="signup.php">Sign up here!</a></div>
-                </div>
                 <div class="col-4 align-self-end"></div>
             </div>    
         </div>
