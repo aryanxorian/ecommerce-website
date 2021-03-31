@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
-    <link rel="stylesheet" href="assests/css/homepage.css" />
+    <link rel="stylesheet" href="assets/css/homepage.css" />
     <title>Shop happily</title>
     
   </head>
@@ -105,7 +105,7 @@
             <div class="col-lg-3">
               <form method="POST" action="manage_cart.php">
                 <div class="card">
-                  <img src="image/bag1.jpg" class="card-img-top" style="height:168.83px;"alt=".."/>
+                  <img src="assets/image/bag1.jpg" class="card-img-top" style="height:168.83px;"alt=".."/>
                   <div class="card-body text-center">
                     <h5 class="card-title"> Bag 1</h5>
                     <p class="card-text"> Price : Rs 500</p>
@@ -120,7 +120,7 @@
             <div class="col-lg-3">
               <form method="POST" action="manage_cart.php">
                 <div class="card">
-                  <img src="image/bag2.jpg" class="card-img-top" style="height:168.83px;" alt=".."/>
+                  <img src="assets/image/bag2.jpg" class="card-img-top" style="height:168.83px;" alt=".."/>
                   <div class="card-body text-center">
                     <h5 class="card-title"> Bag 2</h5>
                     <p class="card-text"> Price : Rs 800</p>
@@ -135,7 +135,7 @@
             <div class="col-lg-3">
               <form method="POST" action="manage_cart.php">
                 <div class="card">
-                  <img src="image/bag3.jpg" class="card-img-top" style="height:168.83px;" alt=".."/>
+                  <img src="assets/image/bag3.jpg" class="card-img-top" style="height:168.83px;" alt=".."/>
                   <div class="card-body text-center">
                     <h5 class="card-title"> Bag 3</h5>
                     <p class="card-text"> Price : Rs 450</p>
@@ -150,7 +150,7 @@
             <div class="col-lg-3">
               <form method="POST" action="manage_cart.php">
                 <div class="card">
-                  <img src="image/bag4.jpg" class="card-img-top" style="height:168.83px;"alt=".."/>
+                  <img src="assets/image/bag4.jpg" class="card-img-top" style="height:168.83px;"alt=".."/>
                   <div class="card-body text-center">
                     <h5 class="card-title"> Bag 4</h5>
                     <p class="card-text"> Price : Rs 700</p>
