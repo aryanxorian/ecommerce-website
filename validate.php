@@ -47,19 +47,22 @@
         }
 
 	    if (!$nameERR && !$genderErr && !$emailErr && !$pwdErr) {
-	        // header('Location: signin.php');
-	        // exit(); 
             $conn = new mysqli($host, $username, $dbpassword, $dbname);
             
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            $check_email_query="SELECT * from users WHERE email='$email'";  
-            $run_query=mysqli_query($conn,$check_email_query);  
-            if(mysqli_num_rows($run_query)>0){
+            $check_email_query="SELECT * from users WHERE email=?";
+            $stmt = $conn->prepare($check_email_query); 
+            $stmt->bind_param("s", $stmt);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();  
+            if($row>0){
                 $emailErr="Email already exists. You cannot register with duplicate email.";
-            }else{
+            }
+            else{
                 $stmt = $conn->prepare("INSERT INTO users (name, email, password, dob, gender) VALUES (?, ?, ?, ?, ?)");
                 $stmt->bind_param("sssss", $name, $email, $password, $dob, $gender);
                 $stmt->execute();
