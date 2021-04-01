@@ -12,7 +12,7 @@
               <div class="collapse navbar-collapse uppernav" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item active">
-                    <a class="nav-link" href="#"> <i class="fa  fa-user"> </i>My Account </a>
+                    <a class="nav-link" href="profile.php"> <i class="fa  fa-user"> </i>My Account </a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#"> <i class="fa  fa-heart"> </i>Wishlist</a>
@@ -71,7 +71,7 @@
       <div class="container">
         <nav class="navbar navbar-light  justify-content-between">
 
-            <a class="navbar-brand" href="index.php"><img src="image/logo.png"style="width:250px;height:60px;"/></a>
+            <a class="navbar-brand" href="index.php"><img src="assets/image/logo.png"style="width:250px;height:60px;"/></a>
           
             <?php 
             $count=0;
