@@ -45,7 +45,7 @@ function fun()
         var selectedValue1 = ddl1.options[ddl1.selectedIndex].value;
         var selectedValue2 = ddl2.options[ddl2.selectedIndex].value;
         var selectedValue3 = ddl3.options[ddl3.selectedIndex].value;
-        if (selectedValue1 == "" || selectedValue1=="" || selectedValue1=="")
+        if (selectedValue1 == "" || selectedValue2=="" || selectedValue3=="")
         {
             alert("Please select the options");
         }

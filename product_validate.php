@@ -5,8 +5,6 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-    	
-    	
         $_SESSION["p_name"] = $p_name = test_input($_POST["p_name"]);
         $_SESSION["amount"] = $amount = test_input($_POST["amount"]);
         $_SESSION["quantity"] = $quantity = test_input($_POST["quantity"]);
@@ -60,16 +58,24 @@
         }
 	    if (!$nameERR && !$imageErr && !$amountErr && !$quantityErr ) {
             $_SESSION["image"] = "product/" . basename($_FILES["product_image"]["name"]);
-            $conn =mysqli_connect('localhost', 'nikitab', 'mindfire', 'E-commerce');
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
+            $image="product/" . basename($_FILES["product_image"]["name"]);
+            require_once 'configd.php';
+            session_start();
+            $conn = new mysqli($host, $username, $dbpassword, $dbname);
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
             }
-            $image="product/" . basename($_FILES["image"]["name"]);
+            $stmt = $conn->prepare("INSERT INTO products (product_name, product_image) VALUES (?, ?)");
+            $stmt->bind_param("ss", $p_name, $image);
+            $stmt->execute();
+            $stmt1 = $conn->prepare("INSERT INTO product_sellers (quantity, amount) VALUES (?, ?)");
+            $stmt1->bind_param("ss", $quantity, $amount);
+            $stmt1->execute();
+                
+
             
-            
-            mysqli_close($conn);
-	    }
 	}
+
 
     function test_input($data) {
     $data = trim($data);

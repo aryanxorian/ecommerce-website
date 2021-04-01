@@ -3,13 +3,6 @@
     padding: 30px 0;
 }
 
-form {
-    color: #434343;
-    margin-bottom: 15px;
-    border: 1px solid #f3f3f3;
-    box-shadow: 0px 2px 2px;
-    padding: 30px;
-}
 
 h4 {
     text-align: center;
@@ -35,3 +28,4 @@ h4 {
 .forgot-link {
     float: right;
 }
+
