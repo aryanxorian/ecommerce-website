@@ -1,5 +1,5 @@
   <!--upper nav bar -->
-<?php session_start(); ?>
+
 <div class="container-fluid bg-light">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -18,20 +18,39 @@
                     <a class="nav-link" href="#"> <i class="fa  fa-heart"> </i>Wishlist</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#"> <i class="fa  fa-user"></i>My Cart</a>
+                    <a class="nav-link" href="cart.php"> <i class="fa  fa-user"></i>My Cart</a>
                   </li>
+                  <?php if(isset($_SESSION['username']))
+                  { ?>
                   <li class="nav-item">
-                    <a class="nav-link" href="#"> <i class="fa  fa-user"></i>Checkout</a>
+                    <a class="nav-link" href="seller.php"> <i class="fa  fa-user"></i>Become A seller</a>
                   </li>
+                  <?php }?>
+
+                  
                   <li class="nav-item">
-                    <a class="nav-link" href="#"> <i class="fa  fa-user"></i>Login</a>
+                    <a class="nav-link" href="signin.php"> <i class="fa  fa-user"></i>
+                    <?php
+                    if(!isset($_SESSION['username']))
+                    {
+                    echo "Login";
+                    }
+                    else
+                    {
+                      echo $_SESSION['name'].'(<span><a href="logout.php"> Log out</a> </span>)';
+                    }
+                  ?>
+                  
+                </a>
                   </li>
+                
+                  
                  
                 </ul>
                 <span class="navbar-text">
                   <div class="collapse navbar-collapse uppernav" id="navbarText">
                     <ul class="navbar-nav mr-auto">
-                      
+                      <!--
                       <li class="nav-item ">
                         <a class="nav-link " href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false">
                           Currency <select>
@@ -45,6 +64,7 @@
                        
                           
                       </li>
+                      
                       <li class="nav-item ">
                         <a class="nav-link" href="#" id="" role="button" data-toggle="" aria-haspopup="true" aria-expanded="false">
                           Language <select>
@@ -57,6 +77,7 @@
                         
                           
                       </li>
+                      -->
                     </ul>
                     
                   </div>
@@ -85,4 +106,4 @@
           
         </nav>
       </div>
-      <!--logo section ends-->
+    

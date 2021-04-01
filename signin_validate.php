@@ -1,13 +1,9 @@
 <?php
 	require_once 'configd.php';
 	session_start();
-    $conn = new mysqli($host, $username, $dbpassword, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-	if(isset($_POST['login']))  
+    if(isset($_POST['login']))  
 	{  
-	    $user_email=$_POST['username'];  
+	    $user_email=$_POST['username'];
 	    $user_pass=$_POST['password'];  
 	  
 	    $check_user="SELECT * from users WHERE email=? AND password=?";  
@@ -19,7 +15,8 @@
 	    if($row>0)  
 	    {  
 	    	$_SESSION['username']=$user_email;
-	        header('Location: home.php');
+			$_SESSION['name']=$row['name'];
+	        header('Location: index.php');
 	        exit();
 	    }  
 	    else  
