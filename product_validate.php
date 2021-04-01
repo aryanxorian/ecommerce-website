@@ -8,6 +8,8 @@
         $_SESSION["p_name"] = $p_name = test_input($_POST["p_name"]);
         $_SESSION["amount"] = $amount = test_input($_POST["amount"]);
         $_SESSION["quantity"] = $quantity = test_input($_POST["quantity"]);
+        $category=test_input($_POST["category"]);
+        $subcategory=test_input($_POST["sub-category"])
         $product_image = test_input($_POST["product_image"]);
         
         
@@ -65,11 +67,20 @@
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-            $stmt = $conn->prepare("INSERT INTO products (product_name, product_image) VALUES (?, ?)");
-            $stmt->bind_param("ss", $p_name, $image);
+            $stmt = $conn->prepare("INSERT INTO categories(category_name) VALUES (?)");
+            $stmt->bind_param("s",$category);
             $stmt->execute();
-            $stmt1 = $conn->prepare("INSERT INTO product_sellers (quantity, amount) VALUES (?, ?)");
-            $stmt1->bind_param("ss", $quantity, $amount);
+            $category_id=$conn->lastInsertId();
+            $stmt = $conn->prepare("INSERT INTO sub_categories(category_id,sub_category_name) VALUES (?,?)");
+            $stmt->bind_param("ss",$category_id,$subcategory);
+            $stmt->execute();
+            $subcategory_id=$conn->lastInsertId();
+            $stmt = $conn->prepare("INSERT INTO products (product_name,product_image,category_id,sub_category_id) VALUES (?,?,?,?)");
+            $stmt->bind_param("ssss",$p_name,$image,$category_id,$subcategory_id);
+            $stmt->execute();
+            $product_id=$conn->lastInsertId();
+            $stmt1 = $conn->prepare("INSERT INTO product_sellers (product_id,seller_id,quantity,amount) VALUES (?,?,?,?)");
+            $stmt1->bind_param("ssss",$product_id,$seller_id,$quantity, $amount);
             $stmt1->execute();
                 
 
