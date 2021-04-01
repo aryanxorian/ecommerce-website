@@ -66,6 +66,7 @@
                 $stmt = $conn->prepare("INSERT INTO users (name, email, password, dob, gender) VALUES (?, ?, ?, ?, ?)");
                 $stmt->bind_param("sssss", $name, $email, $password, $dob, $gender);
                 $stmt->execute();
+                echo "SUCESSFULLY REGISTERED";
             }
 
 	    }
