@@ -2,14 +2,14 @@
     require_once 'configd.php';
 	session_start();
     $nameErr = $emailErr = $genderErr = $pwdErr = "";
-    $name = $email = $gender = $password = "";
+    $name = $email = $gender = $userpassword = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
     	
         $_SESSION["name"] = $name = test_input($_POST["name"]);
         $_SESSION["email"] = $email = test_input($_POST["email"]);
-        $_SESSION["password"] = $password = test_input($_POST["password"]);
+        $_SESSION["password"] = $userpassword = test_input($_POST["password"]);
         $_SESSION["dob"] = $dob = test_input($_POST["dob"]);
         $_SESSION["gender"] = $gender = test_input($_POST["gender"]);
         
@@ -27,16 +27,16 @@
             }
         }
             
-        if (strlen($password) <= 8) {
+        if (strlen($userpassword) <= 8) {
             $pwdErr = "Your Password Must Contain At Least 8 Characters!";
         }
-        elseif(!preg_match("#[0-9]+#",$password)) {
+        elseif(!preg_match("#[0-9]+#",$userpassword)) {
             $pwdErr = "Your Password Must Contain At Least 1 Number!";
         }
-        elseif(!preg_match("#[A-Z]+#",$password)) {
+        elseif(!preg_match("#[A-Z]+#",$userpassword)) {
             $pwdErr = "Your Password Must Contain At Least 1 Capital Letter!";
         }
-        elseif(!preg_match("#[a-z]+#",$password)) {
+        elseif(!preg_match("#[a-z]+#",$userpassword)) {
             $pwdErr = "Your Password Must Contain At Least 1 Lowercase Letter!";
         } else {
             $pwdErr = "";
@@ -64,6 +64,7 @@
             }
             else{
                 $stmt = $conn->prepare("INSERT INTO users (name, email, password, dob, gender) VALUES (?, ?, ?, ?, ?)");
+                $password=password_hash($userpassword,PASSWORD_DEFAULT);
                 $stmt->bind_param("sssss", $name, $email, $password, $dob, $gender);
                 $stmt->execute();
                 echo "SUCESSFULLY REGISTERED";

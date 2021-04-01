@@ -10,13 +10,13 @@
 	    $user_email=$_POST['username'];  
 	    $user_pass=$_POST['password'];  
 	  
-	    $check_user="SELECT * from users WHERE email=? and password=?";  
+	    $check_user="SELECT password from users WHERE email=?";  
 	  	$stmt = $conn->prepare($check_user); 
-		$stmt->bind_param("ss", $user_email,$user_pass);
+		$stmt->bind_param("s", $user_email);
 		$stmt->execute();
 		$result = $stmt->get_result();  
 	  	$row= $result->fetch_assoc();
-	    if($row>0)  
+	    if(password_verify($user_pass,$row["password"]))  
 	    {  
 	    	$_SESSION['username']=$user_email;
 	        header('Location: home.php');
