@@ -1,0 +1,17 @@
+<?php
+$username="username";
+$password="password";
+$hostname="hostname";
+$dbname="dbname";
+$conn = new mysqli($hostname, $username, $password, $dbname);
+if(!$conn)
+{
+    echo $conn->connect_error;
+}
+
+
+
+
+ 
+
+?>

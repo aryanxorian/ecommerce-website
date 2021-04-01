@@ -1,7 +1,8 @@
-<?php
-	session_start();
+
+<?php 
+    session_start();
     $nameErr = $imageErr = $amountErr = $quantityErr =NULL;
-    $product_image=$p_name=$amount=$quantity=""
+    $product_image=$p_name=$amount=$quantity="";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
@@ -11,14 +12,17 @@
         $product_image = test_input($_POST["product_image"]);
         
         
-        if (empty($p_name)) {
+        if (empty($p_name)) 
+        {
             $nameErr = "Product Name is required";
         }
-        if (empty($amount)) {
+        if (empty($amount))
+        {
             $amountErr = "Amount is required";
         }
         
-        if(empty($quantity)){
+        if(empty($quantity))
+        {
             $pwdErr="Enter 0 if Out Of Stock.";
         }
         if(!empty($_FILES["product_image"]["name"]))
@@ -77,10 +81,12 @@
 	}
 
 
+
     function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
     }
+}   
 ?>
