@@ -1,11 +1,5 @@
 <?php
-if(isset($POST['login']))
-{
-    if(isset($POST['username']) && isset($POST['password']))
-    {
-        
-    }
-}
+    require_once("signin_validate.php")
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +17,7 @@ if(isset($POST['login']))
             <div class="row">
                 <div class="col-4 align-self-start"></div>
                     <div class="col-4 align-self-center">
-                        <form action="#" method="post">
+                        <form method="POST" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                             <div class="avatar"><i class="fa fa-user"></i></div>
                             <h4>Login to Your Account</h4>
                             <div class="form-group">
