@@ -4,6 +4,7 @@
 *.zip
 *.svg
 *.jpeg
+*.mp4
 dummy.php
 configd.php
 test.php

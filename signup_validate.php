@@ -66,8 +66,11 @@
                 $stmt = $conn->prepare("INSERT INTO users (name, email, password, dob, gender) VALUES (?, ?, ?, ?, ?)");
                 $password=password_hash($userpassword,PASSWORD_DEFAULT);
                 $stmt->bind_param("sssss", $name, $email, $password, $dob, $gender);
-                $stmt->execute();
-                echo "SUCESSFULLY REGISTERED";
+                if($stmt->execute()){
+                    echo "<script> alert('You have successfully Registered'); </script>";
+                    header('Location:signup.php');
+                }
+                
             }
 
 	    }

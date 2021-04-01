@@ -1,5 +1,6 @@
 <?php
     require_once("signin_validate.php");
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,7 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-        <link rel="stylesheet" href="assests/css/style.css">
+        <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
         <div class="container property">
@@ -21,13 +22,13 @@
                             <div class="avatar"><i class="fa fa-user"></i></div>
                             <h4>Login to Your Account</h4>
                             <div class="form-group">
-                                <input type="text" name="username"class="form-control" placeholder="Username" required="required">
+                                <input type="email" name="username"class="form-control" placeholder="email" required="required">
                             </div>
                             <div class="form-group">
                                 <input type="password" name ="password" class="form-control" placeholder="Password" required="required">
                             </div>
                             <div class="form-group">
-                                <label><input type="checkbox"class="mr-1">Remember me</label>
+                                
                                 <a href="#" class="forgot-link">Forgot Password?</a>
                             </div> 
                             <input type="submit" class="btn btn-success btn-block btn-lg"  name="login" value="Login">              
