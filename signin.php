@@ -1,11 +1,5 @@
 <?php
-if(isset($POST['login']))
-{
-    if(isset($POST['username']) && isset($POST['password']))
-    {
-        
-    }
-}
+    require_once("signin_validate.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,10 +21,10 @@ if(isset($POST['login']))
                             <div class="avatar"><i class="fa fa-user"></i></div>
                             <h4>Login to Your Account</h4>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Username" required="required">
+                                <input type="text" name="username"class="form-control" placeholder="Username" required="required">
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password" required="required">
+                                <input type="password" name ="password" class="form-control" placeholder="Password" required="required">
                             </div>
                             <div class="form-group">
                                 <label><input type="checkbox"class="mr-1">Remember me</label>

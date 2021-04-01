@@ -1,5 +1,5 @@
 <?php
-    require_once("validate.php");
+    require_once("signup_validate.php");
 ?>
 <!DOCTYPE HTML>  
 <html>
