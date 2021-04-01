@@ -65,53 +65,53 @@
             <div class="row">
                 <div class="w-50 mx-auto">
                     <form name="form1" id="form1" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-
-                    Gender: <select name="gender" id="gender">
-                            <option value="" selected="selected">Select subject</option>
-                        </select>
-                        <br><br>
-                        Category: <select name="category" id="category">
-                            <option value="" selected="selected">Please select subject first</option>
-                        </select>
-                        <br><br>
-                        Sub-Category: <select name="sub-category" id="sub-category" onchange="fun()">
-                            <option value="" selected="selected">Please select topic first</option>
-                        </select>
-                        <br><br>
-                       
-                      
-
-                    <div class="form-group box" id="box">
-                        
-                        <div class="row">
-                            <label  class="col-sm-2 col-form-label">Product Image</label>
-                            <div class="col-sm-6">
-                            <input type="file" name="product_image">
-                            <span class="error">*<?php echo $imageErr;?></span>
-                            </div>
+                        <div class="col-sm-12 m-2">
+                            Gender: <select name="gender" id="gender">
+                                <option value="" selected="selected">Select subject</option>
+                                </select>
+                                <span class="error">*</span>
                         </div>
-                        
-                        <div class="row">
-                            <label  class="col-sm-2 col-form-label"> Product Name</label>
-                            <div class="col-sm-6">
-                              <input type="text" class="form-control" name="p_name" placeholder="Enter Product Name">
-                              <span class = "error">* <?php echo $nameErr;?></span>
-                            </div>
+                        <div class="col-sm-12 m-2">
+                            Category: <select name="category" id="category">
+                                <option value="" selected="selected">Please select subject first</option>
+                            </select>
+                            <span class="error">*</span>
                         </div>
-                        <div class="row">
-                            <label  class="col-sm-2 col-form-label">Quantity</label>
-                            <div class="col-sm-6">
-                            <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity">
-                            <span class = "error">* <?php echo $quantityErr;?></span>
-                            </div>
+                        <div class="col-sm-12 m-2">                        
+                            Sub-Category: <select name="sub-category" id="sub-category" onchange="fun()">
+                                <option value="" selected="selected">Please select topic first</option>
+                            </select>
+                            <span class="error">*</span>
                         </div>
-                        <div class="row">
-                            <label  class="col-sm-2 col-form-label">Amount</label>
-                            <div class="col-sm-6">
-                            <input type="number" class="form-control" name="amount" placeholder="Enter Amount">
-                            <span class = "error">*<?php echo $amountErr;?></span>
+                        <div class="form-group box" id="box">   
+                            <div class="row">
+                                <label  class="col-sm-2 col-form-label">Product Image</label>
+                                <div class="col-sm-6">
+                                <input type="file" name="product_image">
+                                <span class="error">*<?php echo $imageErr;?></span>
+                                </div>
                             </div>
-                        </div>
+                            <div class="row">
+                                <label  class="col-sm-2 col-form-label"> Product Name</label>
+                                <div class="col-sm-6">
+                                  <input type="text" class="form-control" name="p_name" placeholder="Enter Product Name">
+                                  <span class = "error">* <?php echo $nameErr;?></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label  class="col-sm-2 col-form-label">Quantity</label>
+                                <div class="col-sm-6">
+                                <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity">
+                                <span class = "error">* <?php echo $quantityErr;?></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label  class="col-sm-2 col-form-label">Amount</label>
+                                <div class="col-sm-6">
+                                <input type="number" class="form-control" name="amount" placeholder="Enter Amount">
+                                <span class = "error">*<?php echo $amountErr;?></span>
+                                </div>
+                            </div>
                     </div>
                     <input type="submit" class="btn btn-success"id="submit" name="submit" value="Submit">  
                     </form>
