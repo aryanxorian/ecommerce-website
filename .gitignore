@@ -1,9 +1,4 @@
-*.jpg
-*.png
-*.webp
-*.zip
-*.svg
-*.jpeg
+
 *.mp4
 dummy.php
 configd.php
