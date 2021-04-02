@@ -5,7 +5,10 @@
 	{  
 	    $user_email=$_POST['username'];
 	    $user_pass=$_POST['password'];  
-	  
+	  	$conn = new mysqli($host, $username, $dbpassword, $dbname);
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
 	    $check_user="SELECT * from users WHERE email=? AND password=?";  
 	  	$stmt = $conn->prepare($check_user); 
 		$stmt->bind_param("ss", $user_email,$user_pass);
@@ -20,7 +23,13 @@
             $id=$row['id'];
             $status=1;
             $ps->execute();
+<<<<<<< HEAD
         
+=======
+            $_SESSION['seller_id']=$conn->insert_id;
+            $_SESSION['seller_name']=$row['name'];
+            
+>>>>>>> 12f8c552063b887c1b8337cfff0c8a197dc6f779
             header('Location: confirm_seller.php');
 	        exit();
 	    }  

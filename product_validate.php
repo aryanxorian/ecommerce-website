@@ -10,7 +10,7 @@
         $_SESSION["quantity"] = $quantity = test_input($_POST["quantity"]);
         $category=test_input($_POST["category"]);
         $subcategory=test_input($_POST["sub-category"]);
-        $image =$_POST["image"];
+        $image =test_input($_POST["image"]);
         if (empty($p_name)) 
         {
             $nameErr = "Product Name is required";
@@ -26,7 +26,7 @@
         }
         if(!empty($_FILES["image"]["name"]))
         {
-            var_dump("hello");
+            
             if($_FILES["image"]["error"] == 0)
             {
                 $allowed_types = array("image/jpeg", "image/jpg", "image/png", "image/gif");
@@ -60,15 +60,18 @@
             $imageErr="Please browse a file to upload";
         }
         
-    
         if (!$nameERR && !$imageErr && !$amountErr && !$quantityErr ) {
-            $product_image= htmlspecialchars(basename($_FILES["image"]["name"]));
-            
+            $_SESSION["image"] = "product/" . basename($_FILES["image"]["name"]);
+            $image="product/" . basename($_FILES["image"]["name"]);
             
             require_once 'configd.php';
 
-            
-           
+            $conn = new mysqli($host, $username, $dbpassword, $dbname);
+
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            $image="product/" . basename($_FILES["image"]["name"]);
             $stmt = $conn->prepare("INSERT INTO categories(category_name) VALUES (?)");
             $stmt->bind_param("s",$category);
             $stmt->execute();
@@ -85,7 +88,6 @@
             $stmt1 = $conn->prepare("INSERT INTO product_sellers (product_id,seller_id,quantity,amount) VALUES (?,?,?,?)");
             $stmt1->bind_param("iidd",$product_id,$seller_id,$quantity, $amount);
             $stmt1->execute();
-            
             header('Location: add_product_success.php');
         }
     }

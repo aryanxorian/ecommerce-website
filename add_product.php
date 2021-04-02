@@ -1,5 +1,10 @@
 <?php
+<<<<<<< HEAD
 session_start();
+=======
+    session_start();
+    include_once("product_validate.php");
+>>>>>>> 12f8c552063b887c1b8337cfff0c8a197dc6f779
 ?>
 <!doctype html>
 <html lang="en">
@@ -10,7 +15,6 @@ session_start();
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Bootstrap CSS -->
-
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -67,7 +71,11 @@ session_start();
         <div class="container">
             <div class="row">
                 <div class="w-50 mx-auto">
+<<<<<<< HEAD
                     <form name="form1" id="form1" method="post" action="product_validate.php">
+=======
+                    <form name="form1" id="form1" enctype="multipart/form-data" method="post" action ="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+>>>>>>> 12f8c552063b887c1b8337cfff0c8a197dc6f779
                         <div class="col-sm-12 m-2">
                             Gender: <select name="gender" id="gender">
                                 <option value="" selected="selected">Select subject</option>
@@ -90,7 +98,7 @@ session_start();
                             <div class="row">
                                 <label  class="col-sm-2 col-form-label">Product Image</label>
                                 <div class="col-sm-6">
-                                <input type="file" name="product_image">
+                                <input type="file" name="image">
                                 <span class="error">*<?php echo $imageErr;?></span>
                                 </div>
                             </div>
