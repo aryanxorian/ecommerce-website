@@ -1,10 +1,7 @@
 <?php
-    
-	require_once 'configd.php';
+    require_once 'configd.php';
 	session_start();
-    
-    
-	if(isset($_POST['authenticate']))  
+    if(isset($_POST['authenticate']))  
 	{  
 	    $user_email=$_POST['username'];
 	    $user_pass=$_POST['password'];  
@@ -17,12 +14,13 @@
 	  	$row= $result->fetch_assoc();
 	    if($row>0)  
 	    {  
-	    	$query="insert into sellers(user_id) values(?)";
+	    	$query="insert into sellers(user_id,status) values(?,?)";
             $ps= $conn->prepare($query);
-            $ps->bind_param("i",$id);
+            $ps->bind_param("ii",$id,$status);
             $id=$row['id'];
+            $status=1;
             $ps->execute();
-            $_SESSION['seller_name']=$row['name'];
+        
             header('Location: confirm_seller.php');
 	        exit();
 	    }  
