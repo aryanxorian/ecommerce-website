@@ -1,8 +1,7 @@
-
 <?php 
     session_start();
     $nameErr = $imageErr = $amountErr = $quantityErr =NULL;
-    $product_image=$p_name=$amount=$quantity="";
+    $product_image=$p_name=$amount=$quantity=$seller_id="";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
@@ -10,8 +9,8 @@
         $_SESSION["amount"] = $amount = test_input($_POST["amount"]);
         $_SESSION["quantity"] = $quantity = test_input($_POST["quantity"]);
         $category=test_input($_POST["category"]);
-        $subcategory=test_input($_POST["sub-category"])
-        $product_image = test_input($_POST["product_image"]);
+        $subcategory=test_input($_POST["sub-category"]);
+        $product_image =test_input($_POST["product_image"]);
         
         
         if (empty($p_name)) 
@@ -62,41 +61,39 @@
         {
             $uploadErr="Please browse a file to upload";
         }
-	    if (!$nameERR && !$imageErr && !$amountErr && !$quantityErr ) {
+        if (!$nameERR && !$imageErr && !$amountErr && !$quantityErr ) {
             $_SESSION["image"] = "product/" . basename($_FILES["product_image"]["name"]);
             $image="product/" . basename($_FILES["product_image"]["name"]);
             require_once 'configd.php';
-            session_start();
+
             $conn = new mysqli($host, $username, $dbpassword, $dbname);
+
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
             $stmt = $conn->prepare("INSERT INTO categories(category_name) VALUES (?)");
             $stmt->bind_param("s",$category);
             $stmt->execute();
-            $category_id=$conn->lastInsertId();
-            var_dump($category_id);
+            $category_id=$conn->insert_id;
             $stmt = $conn->prepare("INSERT INTO sub_categories(category_id,sub_category_name) VALUES (?,?)");
             $stmt->bind_param("is",$category_id,$subcategory);
             $stmt->execute();
-            $subcategory_id=$conn->lastInsertId();
+            $subcategory_id=$conn->insert_id;
             $stmt = $conn->prepare("INSERT INTO products (product_name,product_image,category_id,sub_category_id) VALUES (?,?,?,?)");
             $stmt->bind_param("ssii",$p_name,$image,$category_id,$subcategory_id);
             $stmt->execute();
-            $product_id=$conn->lastInsertId();
+            $product_id=$conn->insert_id;
             $seller_id=$_SESSION['seller_id'];
             $stmt1 = $conn->prepare("INSERT INTO product_sellers (product_id,seller_id,quantity,amount) VALUES (?,?,?,?)");
             $stmt1->bind_param("iidd",$product_id,$seller_id,$quantity, $amount);
             $stmt1->execute();
-	}
-
-
-
+            header('Location: add_product_success.php');
+        }
+    }
     function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
-    }
-}   
+    }  
 ?>

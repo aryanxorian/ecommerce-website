@@ -25,8 +25,9 @@
             $ps->bind_param("i",$id);
             $id=$row['id'];
             $ps->execute();
+            $_SESSION['seller_id']=$conn->insert_id;
             $_SESSION['seller_name']=$row['name'];
-            $_SESSION['seller_id']=$row['id'];
+            
             header('Location: confirm_seller.php');
 	        exit();
 	    }  

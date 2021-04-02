@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -64,7 +65,7 @@
         <div class="container">
             <div class="row">
                 <div class="w-50 mx-auto">
-                    <form name="form1" id="form1" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                    <form name="form1" id="form1" method="post" action ="product_validate.php">
                         <div class="col-sm-12 m-2">
                             Gender: <select name="gender" id="gender">
                                 <option value="" selected="selected">Select subject</option>
