@@ -27,7 +27,6 @@
 			$statement->execute();
 			$result2=$statement->get_result();
 			$row2=$result2->fetch_assoc();
-			
 			if($row2['status']===1)
 			{
 				$_SESSION['user_id']=$row['id'];

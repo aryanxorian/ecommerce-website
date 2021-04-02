@@ -47,8 +47,10 @@
         }
 
 	    if (!$nameERR && !$genderErr && !$emailErr && !$pwdErr) {
-           
-
+           $conn = new mysqli($host, $username, $dbpassword, $dbname);
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            } 
             $check_email_query="SELECT * from users WHERE email=?";
             $stmt = $conn->prepare($check_email_query); 
             $stmt->bind_param("s", $email);

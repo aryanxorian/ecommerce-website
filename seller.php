@@ -23,13 +23,9 @@
             $id=$row['id'];
             $status=1;
             $ps->execute();
-<<<<<<< HEAD
-        
-=======
+
             $_SESSION['seller_id']=$conn->insert_id;
             $_SESSION['seller_name']=$row['name'];
-            
->>>>>>> 12f8c552063b887c1b8337cfff0c8a197dc6f779
             header('Location: confirm_seller.php');
 	        exit();
 	    }  

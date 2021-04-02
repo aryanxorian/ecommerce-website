@@ -71,25 +71,67 @@
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
+            var_dump('hello');
             $image="product/" . basename($_FILES["image"]["name"]);
-            $stmt = $conn->prepare("INSERT INTO categories(category_name) VALUES (?)");
-            $stmt->bind_param("s",$category);
+            $check="SELECT * from categories WHERE category_name=?";
+            $stmt = $conn->prepare($check); 
+            $stmt->bind_param("s", $category);
             $stmt->execute();
-            $category_id=$conn->insert_id;
-            var_dump($category_id);
-            $stmt = $conn->prepare("INSERT INTO sub_categories(category_id,sub_category_name) VALUES (?,?)");
-            $stmt->bind_param("is",$category_id,$subcategory);
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            if($row>0)  
+            {
+                $category_id=$row['id'];
+
+            }
+            else{
+                $stmt = $conn->prepare("INSERT INTO categories(category_name) VALUES (?)");
+                $stmt->bind_param("s",$category);
+                $stmt->execute();
+                $category_id=$conn->insert_id;
+            }
+            
+            $check="SELECT * from sub_categories WHERE sub_category_name=?";
+            $stmt = $conn->prepare($check); 
+            $stmt->bind_param("s", $subcategory);
             $stmt->execute();
-            $subcategory_id=$conn->insert_id;
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            if($row>0)  
+            {
+                $subcategory_id=$row['id'];
+
+            }
+            else{
+                $stmt = $conn->prepare("INSERT INTO sub_categories(category_id,sub_category_name) VALUES (?,?)");
+                $stmt->bind_param("is",$category_id,$subcategory);
+                $subcategory_id=$conn->insert_id;
+            }
+            var_dump($p_name);
+            var_dump($image);
             $stmt = $conn->prepare("INSERT INTO products (product_name,product_image,category_id,sub_category_id) VALUES (?,?,?,?)");
-            $stmt->bind_param("ssii",$p_name,$product_image,$category_id,$subcategory_id);
+            $stmt->bind_param("ssii",$p_name,$image,$category_id,$subcategory_id);
             $stmt->execute();
+
             $product_id=$conn->insert_id;
-            $seller_id=$_SESSION['seller_id'];
+            $id=$_SESSION['user_id'];
+            $check="SELECT * from sellers where user_id=?";
+            $stmt = $conn->prepare($check); 
+            $stmt->bind_param("s", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            if($row>0)  
+            {
+                $seller_id=$row['id'];
+
+            }
             $stmt1 = $conn->prepare("INSERT INTO product_sellers (product_id,seller_id,quantity,amount) VALUES (?,?,?,?)");
             $stmt1->bind_param("iidd",$product_id,$seller_id,$quantity, $amount);
             $stmt1->execute();
+            $ps_id=$conn->insert_id;
             header('Location: add_product_success.php');
+            
         }
     }
     function test_input($data) {
