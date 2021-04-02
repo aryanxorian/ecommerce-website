@@ -1,10 +1,5 @@
 <?php
-<<<<<<< HEAD
-session_start();
-=======
-    session_start();
     include_once("product_validate.php");
->>>>>>> 12f8c552063b887c1b8337cfff0c8a197dc6f779
 ?>
 <!doctype html>
 <html lang="en">
@@ -71,11 +66,7 @@ session_start();
         <div class="container">
             <div class="row">
                 <div class="w-50 mx-auto">
-<<<<<<< HEAD
-                    <form name="form1" id="form1" method="post" action="product_validate.php">
-=======
-                    <form name="form1" id="form1" enctype="multipart/form-data" method="post" action ="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
->>>>>>> 12f8c552063b887c1b8337cfff0c8a197dc6f779
+                    <form name="form1" id="form1" enctype="multipart/form-data" method="post" action ="product_validate.php">
                         <div class="col-sm-12 m-2">
                             Gender: <select name="gender" id="gender">
                                 <option value="" selected="selected">Select subject</option>

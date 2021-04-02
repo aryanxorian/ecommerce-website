@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    require_once('configd.php');
     $nameErr = $imageErr = $amountErr = $quantityErr =NULL;
     $image=$p_name=$amount=$quantity=$seller_id="";
 
@@ -32,7 +33,7 @@
                 $allowed_types = array("image/jpeg", "image/jpg", "image/png", "image/gif");
                 if((in_array($_FILES["image"]["type"], $allowed_types)))
                 {
-                    if($_FILES["image"]["size"] < 990000)
+                    if($_FILES["image"]["size"] < 9900000)
                     {
                         $uploaded = copy($_FILES["image"]["tmp_name"],"product/" .$_FILES["image"]["name"]);
                         if(!$uploaded)
@@ -61,34 +62,44 @@
         }
         
         if (!$nameERR && !$imageErr && !$amountErr && !$quantityErr ) {
-            $_SESSION["image"] = "product/" . basename($_FILES["image"]["name"]);
-            $image="product/" . basename($_FILES["image"]["name"]);
+            //$_SESSION["image"] = "product/" . basename($_FILES["image"]["name"]);
+            $product_image=htmlspecialchars(basename($_FILES["image"]["name"]));
             
-            require_once 'configd.php';
-
-            $conn = new mysqli($host, $username, $dbpassword, $dbname);
-
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            $image="product/" . basename($_FILES["image"]["name"]);
-            $stmt = $conn->prepare("INSERT INTO categories(category_name) VALUES (?)");
+            $stmt = $conn->prepare("select id from categories where category_name=?");
             $stmt->bind_param("s",$category);
-            $stmt->execute();
-            $category_id=$conn->insert_id;
-            $stmt = $conn->prepare("INSERT INTO sub_categories(category_id,sub_category_name) VALUES (?,?)");
-            $stmt->bind_param("is",$category_id,$subcategory);
-            $stmt->execute();
-            $subcategory_id=$conn->insert_id;
-            $stmt = $conn->prepare("INSERT INTO products (product_name,product_image,category_id,sub_category_id) VALUES (?,?,?,?)");
-            $stmt->bind_param("ssii",$p_name,$product_image,$category_id,$subcategory_id);
-            $stmt->execute();
-            $product_id=$conn->insert_id;
-            $seller_id=$_SESSION['seller_id'];
-            $stmt1 = $conn->prepare("INSERT INTO product_sellers (product_id,seller_id,quantity,amount) VALUES (?,?,?,?)");
-            $stmt1->bind_param("iidd",$product_id,$seller_id,$quantity, $amount);
-            $stmt1->execute();
-            header('Location: add_product_success.php');
+            if($stmt->execute())
+            {
+                $result=$stmt->get_result();
+                $row=$result->fetch_assoc();
+            
+            
+                $stmt2 = $conn->prepare("select id from sub_categories where sub_category_name=? and category_id=?");
+                $stmt2->bind_param("si",$subcategory,$row['id']);
+                if($stmt2->execute())
+                {
+                    $result2=$stmt2->get_result();
+                    $row2=$result2->fetch_assoc();
+                
+            
+            
+                    $stmt3 = $conn->prepare("INSERT INTO products (product_name,product_image,category_id,sub_category_id) VALUES (?,?,?,?)");
+                    $stmt3->bind_param("ssii",$p_name,$product_image,$category_id,$subcategory_id);
+                    $category_id=$row['id'];
+                    $subcategory_id=$row2['id'];
+                    if($stmt3->execute())
+                    {
+                        
+                        $product_id=$conn->insert_id;
+                        $seller_id=$_SESSION['user_id'];
+                        $stmt4 = $conn->prepare("INSERT INTO product_sellers (product_id,seller_id,quantity,amount) VALUES (?,?,?,?)");
+                        $stmt4->bind_param("iiid",$product_id,$seller_id,$quantity, $amount);
+                        if($stmt4->execute())
+                        {
+                            header('Location: add_product_success.php');
+                        }
+                    }
+                }
+            }
         }
     }
     function test_input($data) {

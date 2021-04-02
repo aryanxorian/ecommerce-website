@@ -1,14 +1,11 @@
 <?php
-	require_once 'configd.php';
-	session_start();
+	require_once('configd.php');
+		session_start();
     if(isset($_POST['login']))  
 	{  
 	    $user_email=$_POST['username'];
 	    $user_pass=$_POST['password']; 
-	    $conn = new mysqli($host, $username, $dbpassword, $dbname);
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            } 
+	    
 	    $check_user="SELECT * from users WHERE email=? AND password=?";  
 	  	$stmt = $conn->prepare($check_user); 
 		$stmt->bind_param("ss", $user_email,$user_pass);
@@ -21,7 +18,7 @@
 	    {  
 	    	$_SESSION['username']=$user_email;
 			$_SESSION['name']=$row['name'];
-			$query="select status from sellers where user_id=?";
+			$query="select id,status from sellers where user_id=?";
 			$statement=$conn->prepare($query);
 			$statement->bind_param("i",$row['id']);
 			$statement->execute();
@@ -30,7 +27,7 @@
 			
 			if($row2['status']===1)
 			{
-				$_SESSION['user_id']=$row['id'];
+				$_SESSION['user_id']=$row2['id'];
 				
 			}
 	        header('Location: index.php');

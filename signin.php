@@ -1,5 +1,5 @@
 <?php
-    require_once("signin_validate.php");
+    include "signin_validate.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

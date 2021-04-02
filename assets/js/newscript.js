@@ -1,13 +1,13 @@
 var subjectObject = {
   "male": {
-    "clothing": ["Tshirts","Jeans"],
-    "accesory": ["Bags"],
-    "shoe": ["loafers"]    
+    "Clothing": ["Tshirts","Jeans"],
+    "Accessory": ["Bags"],
+    "Shoe": ["Loafers"]    
   },
   "female": {
-    "clothing": ["Tshirts","Jeans"],
-    "accesory": ["Bags"],
-    "shoe": ["loafers"] 
+    "Clothing": ["Tshirts","Jeans"],
+    "Accessory": ["Bags"],
+    "Shoe": ["Loafers"] 
   }
 }
 window.onload = function() {
