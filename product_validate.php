@@ -26,7 +26,6 @@
         }
         if(!empty($_FILES["image"]["name"]))
         {
-            var_dump("hello");
             if($_FILES["image"]["error"] == 0)
             {
                 $allowed_types = array("image/jpeg", "image/jpg", "image/png", "image/gif");
@@ -88,8 +87,6 @@
             $stmt1 = $conn->prepare("INSERT INTO product_sellers (product_id,seller_id,quantity,amount) VALUES (?,?,?,?)");
             $stmt1->bind_param("iidd",$product_id,$seller_id,$quantity, $amount);
             $stmt1->execute();
-            var_dump($product_id);
-            die;
             header('Location: add_product_success.php');
         }
     }
