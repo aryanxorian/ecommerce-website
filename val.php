@@ -62,7 +62,7 @@
         if (!$nameERR && !$imageErr && !$amountErr && !$quantityErr ) {
             $_SESSION["image"] = "product/" . basename($_FILES["image"]["name"]);
             $image="product/" . basename($_FILES["image"]["name"]);
-            
+            var_dump("hello");
             require_once 'configd.php';
 
             $conn = new mysqli($host, $username, $dbpassword, $dbname);

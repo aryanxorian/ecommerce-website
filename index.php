@@ -112,7 +112,7 @@ session_start();
             <div class="col-lg-3">
               <form method="POST" action="manage_cart.php">
                 <div class="card">
-                  <img src="assets/image/bag1.jpg" class="card-img-top" style="height:168.83px;"alt=".."/>
+                  <img src="image/bag1.jpg" class="card-img-top" style="height:168.83px;"alt=".."/>
                   <div class="card-body text-center">
                     <h5 class="card-title"> Bag 1</h5>
                     <p class="card-text"> Price : Rs 500</p>
@@ -127,7 +127,7 @@ session_start();
             <div class="col-lg-3">
               <form method="POST" action="manage_cart.php">
                 <div class="card">
-                  <img src="assets/image/bag2.jpg" class="card-img-top" style="height:168.83px;" alt=".."/>
+                  <img src="image/bag2.jpg" class="card-img-top" style="height:168.83px;" alt=".."/>
                   <div class="card-body text-center">
                     <h5 class="card-title"> Bag 2</h5>
                     <p class="card-text"> Price : Rs 800</p>
@@ -142,7 +142,7 @@ session_start();
             <div class="col-lg-3">
               <form method="POST" action="manage_cart.php">
                 <div class="card">
-                  <img src="assets/image/bag3.jpg" class="card-img-top" style="height:168.83px;" alt=".."/>
+                  <img src="image/bag3.jpg" class="card-img-top" style="height:168.83px;" alt=".."/>
                   <div class="card-body text-center">
                     <h5 class="card-title"> Bag 3</h5>
                     <p class="card-text"> Price : Rs 450</p>
@@ -157,7 +157,7 @@ session_start();
             <div class="col-lg-3">
               <form method="POST" action="manage_cart.php">
                 <div class="card">
-                  <img src="assets/image/bag4.jpg" class="card-img-top" style="height:168.83px;"alt=".."/>
+                  <img src="image/bag4.jpg" class="card-img-top" style="height:168.83px;"alt=".."/>
                   <div class="card-body text-center">
                     <h5 class="card-title"> Bag 4</h5>
                     <p class="card-text"> Price : Rs 700</p>
