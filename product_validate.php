@@ -75,20 +75,19 @@
             $stmt->bind_param("s",$category);
             $stmt->execute();
             $category_id=$conn->lastInsertId();
+            var_dump($category_id);
             $stmt = $conn->prepare("INSERT INTO sub_categories(category_id,sub_category_name) VALUES (?,?)");
-            $stmt->bind_param("ss",$category_id,$subcategory);
+            $stmt->bind_param("is",$category_id,$subcategory);
             $stmt->execute();
             $subcategory_id=$conn->lastInsertId();
             $stmt = $conn->prepare("INSERT INTO products (product_name,product_image,category_id,sub_category_id) VALUES (?,?,?,?)");
-            $stmt->bind_param("ssss",$p_name,$image,$category_id,$subcategory_id);
+            $stmt->bind_param("ssii",$p_name,$image,$category_id,$subcategory_id);
             $stmt->execute();
             $product_id=$conn->lastInsertId();
+            $seller_id=$_SESSION['seller_id'];
             $stmt1 = $conn->prepare("INSERT INTO product_sellers (product_id,seller_id,quantity,amount) VALUES (?,?,?,?)");
-            $stmt1->bind_param("ssss",$product_id,$seller_id,$quantity, $amount);
+            $stmt1->bind_param("iidd",$product_id,$seller_id,$quantity, $amount);
             $stmt1->execute();
-                
-
-            
 	}
 
 
