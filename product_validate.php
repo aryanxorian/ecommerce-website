@@ -59,8 +59,7 @@
         {
             $imageErr="Please browse a file to upload";
         }
-        var_dump($imageErr);
-        die;
+        
         if (!$nameERR && !$imageErr && !$amountErr && !$quantityErr ) {
             $_SESSION["image"] = "product/" . basename($_FILES["image"]["name"]);
             $image="product/" . basename($_FILES["image"]["name"]);
