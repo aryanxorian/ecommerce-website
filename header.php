@@ -1,5 +1,4 @@
-  <!--upper nav bar -->
-
+<!--upper nav bar -->
 <div class="container-fluid bg-light">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,32 +19,39 @@
                   <li class="nav-item">
                     <a class="nav-link" href="cart.php"> <i class="fa  fa-user"></i>My Cart</a>
                   </li>
-                  <?php if(isset($_SESSION['username']))
+                  <?php if(isset($_SESSION['username'])&& !isset($_SESSION['user_id']))
                   { ?>
                   <li class="nav-item">
                     <a class="nav-link" href="seller.php"> <i class="fa  fa-user"></i>Become A seller</a>
                   </li>
                   <?php }?>
 
-                  
+                 
+                    
                   <li class="nav-item">
-                    <a class="nav-link" href="signin.php"> <i class="fa  fa-user"></i>
+                    <a class="nav-link" href="profile.php"> <i class="fa  fa-user"></i>
                     <?php
-                    if(!isset($_SESSION['username']))
-                    {
-                    echo "Login";
+                    if(isset($_SESSION['username'])){
+                    
+                      echo $_SESSION['name'];
+                      
                     }
-                    else
-                    {
-                      echo $_SESSION['name'].'(<span><a href="logout.php"> Log out</a> </span>)';
-                    }
+                   
                   ?>
                   
                 </a>
                   </li>
-                
-                  
-                 
+                  <?php if(isset($_SESSION['name'])) { ?>
+                  <li class="nav-item" style="position:relative; left:-12px;">
+                    <a class="nav-link" href="logout.php"> (Logout)</i>
+                  </li>
+                  <?php } 
+                  else{?>
+                  <li class="nav-item">
+                    <a class="nav-link" href="signin.php"> <i class="fa  fa-user"> Login</i>
+                  </li>
+                  <?php } ?>
+
                 </ul>
                 <span class="navbar-text">
                   <div class="collapse navbar-collapse uppernav" id="navbarText">

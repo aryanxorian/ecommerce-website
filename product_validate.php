@@ -26,6 +26,7 @@
         }
         if(!empty($_FILES["image"]["name"]))
         {
+            
             if($_FILES["image"]["error"] == 0)
             {
                 $allowed_types = array("image/jpeg", "image/jpg", "image/png", "image/gif");

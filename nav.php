@@ -8,28 +8,19 @@
               <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item active">
-                    <a class="nav-link" href="#">HOME<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">SHOP PAGE</a>
+                    <a class="nav-link" href="">Product</a>
                   </li>
+                  
                   <li class="nav-item">
-                    <a class="nav-link" href="#">SINGLE PRODUCT</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="#">CART</a>
+                      <a class="nav-link" href="cart.php">Cart</a>
                     </li>
+                    
+                  
                     <li class="nav-item">
-                      <a class="nav-link" href="#">CHECKOUT</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">CATAGORY</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">OTHERS</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">CONTACT</a>
+                      <a class="nav-link" href="#">Contact</a>
                     </li>
                    
                 </ul>

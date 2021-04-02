@@ -1,4 +1,6 @@
-<!doctype html>
+<?php
+session_start();
+?><!doctype html>
 <html lang="en">
 
     <head>
@@ -20,7 +22,7 @@
     
         <div class="container-fluid">
 
-            <?php include "header.php"; ?>
+            <?php require_once('header.php'); ?>
             <div class="container-fluid bg-light">
                 <?php include "nav.php"; ?>
             </div>
