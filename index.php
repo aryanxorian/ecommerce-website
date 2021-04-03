@@ -1,5 +1,13 @@
 <?php
 session_start();
+require_once('configd.php');
+//$result=$conn->query('SELECT products.product_name,products.product_image,product_sellers.amount from products inner join product_sellers on products.id=product_sellers.product_id');
+//while($row=$result->fetch_array()){
+//echo "<pre>";
+
+//var_dump($row['product_name']);
+//}
+//exit;
 ?>
 <!doctype html>
 <html lang="en">
@@ -88,15 +96,14 @@ session_start();
 
 		<div class="container">
 			<div class="row">
-				<?php 
-				require_once('configd.php');
+				<?php
 				$result=$conn->query('SELECT products.product_name,products.product_image,product_sellers.amount from products inner join product_sellers on products.id=product_sellers.product_id');
-				
-				while($row=$result->fetch_array());
+				while($row=$result->fetch_array())
 				{
 					$product_name=$row[0];
 					$product_image=$row[1];
 					$amount=$row[2];
+			
 				?>
 				<div class="col-lg-3">
 					<form method='POST' action='manage_cart.php'>
@@ -118,6 +125,7 @@ session_start();
 				?>
 			</div>
 		</div>
+	</div>
 		
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
