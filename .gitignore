@@ -8,4 +8,6 @@
 dummy.php
 configd.php
 test.php
+.env
+.gitignore
 
